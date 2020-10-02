@@ -33,10 +33,7 @@ btn.addEventListener('click', addToList)
 function addToList() {
     
     // Clear entry container before adding new entry
-    const info = [...document.querySelectorAll('.item')]
-    for(let el of info) {
-        el.remove()
-    }
+       clearUI()
     
     //Add new entry
        const fields = [...document.querySelectorAll('.field')];
@@ -72,6 +69,7 @@ function addToList() {
             
             if( obj.name === "" || obj.city === "" || obj.dob === "") {
                 alert("Please fill out all input fields.")
+                loadList(persons)                
                 return;
             };
             
@@ -96,18 +94,31 @@ function addToList() {
              document.querySelector('.container').insertAdjacentHTML('beforeend', html)
             
             };
-            
-            //Check button attached at new entry, removed on adding new entry
+
+            persons.push(obj);
+            btn.disabled = true
+
+            //Check button attached at new entry, add entry and update UI
             const btn2 = document.querySelector('.btn2');
             btn2.addEventListener('click', () => {
                 document.querySelector('.item').classList.remove('checkandadd')
-                location.reload()
+                clearUI()
+                loadList(persons)
+                btn.disabled = false
             })
-
-            persons.push(obj);
+            
             localStorage.setItem('persons', JSON.stringify(persons));
             clearFields(fields);
 };
+
+
+//Clear UI
+function clearUI() {
+    const info = [...document.querySelectorAll('.item')]
+    for(let el of info) {
+        el.remove()
+    }
+}
 
 
 // Clear input fields    
@@ -125,9 +136,7 @@ function clearInput(event) {
        const info = [...document.querySelectorAll('.item')]
        
     if(event.target.classList.contains('clearInputBtn')){
-        for(let el of info) {
-            el.remove()
-        }
+        clearUI()
     }
 
     if(event.target.classList.contains('clearStorageBtn')){
@@ -172,4 +181,8 @@ function deleteItem() {
     }
          localStorage.setItem('persons', JSON.stringify(persons));
 };
+
+/*var index = persons.map(x => {
+      return x.Id;
+        }).indexOf(ID);*/
 
