@@ -173,7 +173,3 @@ function deleteItem() {
          localStorage.setItem('persons', JSON.stringify(persons));
 };
 
-/*var index = persons.map(x => {
-      return x.Id;
-        }).indexOf(ID);*/
-
