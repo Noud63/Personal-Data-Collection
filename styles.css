@@ -51,7 +51,7 @@ body {
 
 .searchInput {
     display: block;
-    width: 597px;
+    width: 596px;
     height: 25px;
     border-top-style: none;
     border-bottom: 1px solid black;
@@ -318,3 +318,43 @@ span {
     background: red; 
   }
   */
+
+.overlay {
+      display: none;
+      top: 0;
+      left:0;
+      bottom: 0;
+      right: 0;
+      position: fixed;
+      background-color: transparent;
+      justify-content: center;
+      align-items: center;
+      z-index: 5;
+  }
+
+.message {
+      width: 450px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: red;
+      background-color: white;
+      font-size: 1.4rem;
+      border: 2px solid red;
+      border-radius: 10px;
+}
+
+.yesno {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    color: red;
+    font-size: 1.4rem;
+}
+
+.yes, .no {
+    cursor: pointer;
+}
