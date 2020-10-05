@@ -1,6 +1,6 @@
 // Input fields for collecting data, with localStorage
 import { getTimeStamp } from './timestamp.js';
-import {searchBtn} from './search.js';
+import {searchBtn, entriesFound} from './search.js';
 
 export let persons = [];
 let data = localStorage.getItem('persons');
@@ -32,7 +32,7 @@ btn.addEventListener('click', addToList)
 
 function addToList() {
     
-    // Clear entry container before adding new entry
+    // Clear UI data container before adding new data
        clearUI()
     
     //Add new entry
@@ -58,7 +58,7 @@ function addToList() {
             
             let entered = getTimeStamp()
 
-            const obj = {
+            let obj = {
                 name: name,
                 dob: DOB,
                 city: city,
@@ -66,13 +66,29 @@ function addToList() {
                 age: age(DOB),
                 entered: entered
               };
-             
-            
+
+            persons.forEach( el => {
+                  console.log(el)
+            if( obj.name === el.name && obj.city === el.city && obj.dob === el.dob) {
+                    alert("Data already exist!") 
+                    obj = {}
+                    clearFields(fields)
+                    loadList(persons)                     
+                    return;
+                };
+            })
+
             if( obj.name === "" || obj.city === "" || obj.dob === "") {
-                alert("Please fill out all input fields.")
+                alert("Please fill out all required fields!.")
                 loadList(persons)                
                 return;
             };
+
+            if(obj.name.trim().indexOf(' ') == -1){
+                 alert('Fill in both first and lastname!')
+                 loadList(persons)
+                 return
+            }
             
             //regex date (yyyy-dd-mm) validation
             const regEx = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
@@ -141,8 +157,21 @@ function clearInput(event) {
     }
 
     if(event.target.classList.contains('clearStorageBtn')){
-        localStorage.removeItem('persons')
-        location.reload()
+        document.querySelector('.overlay').style.display = 'flex';
+        document.querySelector('.yesno').addEventListener( 'click', (e) => {
+            if(e.target.classList.contains('yes')){
+                document.querySelector('.overlay').style.display = 'none';
+                localStorage.removeItem('persons');
+                document.querySelector('.searchResult').innerHTML = ""
+                localStorage.removeItem('entriesFound');
+                clearUI()
+             }else if(e.target.classList.contains('no')){
+                document.querySelector('.overlay').style.display = 'none';
+                clearUI()
+                loadList(persons)
+             }
+        })
+        
         }
 
     if(event.target.classList.contains('removeLastItemBtn')){
@@ -176,10 +205,15 @@ function deleteItem() {
          };
          
          persons = persons.filter( x => {
-             return x.id != ID               
+             return x.id != ID;                
          })
             
     }
          localStorage.setItem('persons', JSON.stringify(persons));
 };
+
+
+/*var index = persons.map(x => {
+      return x.Id;
+        }).indexOf(ID);*/
 
