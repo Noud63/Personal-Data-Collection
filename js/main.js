@@ -42,7 +42,6 @@ function addToList() {
             const name = fields[0].value;
             const DOB = fields[1].value;
             let city = fields[2].value;
-            //city = city[0].toUpperCase() + city.slice(1, city.length)
             const firstLetter = city.slice(0, 1).toUpperCase();
             let type = DOB.split("-")[0].slice(2);
             let id = name.split(' ');
@@ -220,13 +219,6 @@ function deleteItem() {
     }
          localStorage.setItem('persons', JSON.stringify(persons));
 };
-
-
-/*var index = persons.map(x => {
-      return x.Id;
-        }).indexOf(ID);*/
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
        
