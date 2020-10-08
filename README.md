@@ -6,3 +6,4 @@ Check button before adding new entry.<br>
 UI showing entries and search results.<br>
 Several options for deleting entries.<p> 
   
+![PDC3](https://user-images.githubusercontent.com/38325801/95455626-75107f00-096e-11eb-982c-7551915b59e2.png)
