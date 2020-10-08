@@ -3,6 +3,7 @@ import { getTimeStamp } from './timestamp.js';
 import {searchBtn, entriesFound} from './search.js';
 
 export let persons = [];
+
 let data = localStorage.getItem('persons');
 
 if(data) {
@@ -68,18 +69,18 @@ function addToList() {
               };
 
             persons.forEach( el => {
-                  console.log(el)
+                
             if( obj.name === el.name && obj.city === el.city && obj.dob === el.dob) {
                     alert("Data already exist!") 
-                    obj = {}
                     clearFields(fields)
-                    loadList(persons)                     
+                    loadList(persons)  
+                    obj = {}                   
                     return;
                 };
             })
 
             if( obj.name === "" || obj.city === "" || obj.dob === "") {
-                alert("Please fill out all required fields!.")
+                alert("Please fill out all required fields!")
                 loadList(persons)                
                 return;
             };
@@ -95,6 +96,7 @@ function addToList() {
            
             if(!obj.dob.match(regEx)){
                 alert('Please fill out correct date format.')
+                loadList(persons)
                 return;
             } else {
              const html = 
@@ -146,41 +148,48 @@ function clearFields(fields) {
 };
 
 
-// Clear/delete items from UI and localStorage
-document.querySelector('.buttons').addEventListener('click', clearInput)
-function clearInput(event) {
-       
-       const info = [...document.querySelectorAll('.item')]
-       
-    if(event.target.classList.contains('clearInputBtn')){
-        clearUI()
+//Clear searchResults
+function clearSearchResults() {
+    const searchItem = [...document.querySelectorAll('.item2')];
+    for( let el of searchItem) {
+        el.remove();
     }
+    
+}
 
-    if(event.target.classList.contains('clearStorageBtn')){
-        document.querySelector('.overlay').style.display = 'flex';
-        document.querySelector('.yesno').addEventListener( 'click', (e) => {
-            if(e.target.classList.contains('yes')){
-                document.querySelector('.overlay').style.display = 'none';
-                localStorage.removeItem('persons');
-                document.querySelector('.searchResult').innerHTML = ""
-                localStorage.removeItem('entriesFound');
-                clearUI()
-             }else if(e.target.classList.contains('no')){
-                document.querySelector('.overlay').style.display = 'none';
-                clearUI()
-                loadList(persons)
-             }
+document.querySelector('.clearStorageBtn').addEventListener('click', clearAllData)
+function clearAllData() {
+
+    document.querySelector('.overlay').style.display = 'flex';
+
+    document.querySelector('.yesno').addEventListener( 'click', (e) => {
+        if(e.target.classList.contains('yes')){
+            document.querySelector('.overlay').style.display = 'none';
+            clearUI();
+            clearSearchResults();
+            persons = [];
+            entriesFound = [];
+            localStorage.removeItem('persons');
+            localStorage.removeItem('entriesFound');
+        } 
+         
+         if(e.target.classList.contains('no')){
+            document.querySelector('.overlay').style.display = 'none';
+            clearUI()
+            loadList(persons)
+         }
         })
         
-        }
+}
 
-    if(event.target.classList.contains('removeLastItemBtn')){
+// Clear/delete items from UI and localStorage
+document.querySelector('.removeLastItemBtn').addEventListener('click', deleteLastItem)
+function deleteLastItem() {
         const item = document.querySelector('.container div.item:last-of-type')
         item.remove()
         persons.splice(-1, 1)
         localStorage.setItem('persons', JSON.stringify(persons));
     };
-}
 
 
 // Delete an item by ID
@@ -193,7 +202,7 @@ function deleteItem() {
     const itemID = document.querySelector('.itemId');
 
     if(itemID.value === ""){
-        alert('No ID inserted!')
+        alert('No ID!')
         return;
     }else{
         let ID = itemID.value
@@ -217,3 +226,7 @@ function deleteItem() {
       return x.Id;
         }).indexOf(ID);*/
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+       
