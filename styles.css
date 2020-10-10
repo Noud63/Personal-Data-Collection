@@ -233,11 +233,11 @@ span {
 }
 
 .item2 {
+    width: 300px;
     display: flex;
     flex-direction: column;
     color: black;
     font-size: 1rem;
-    margin-right: 50px;
     margin-top: 15px;
 }
 
@@ -248,7 +248,7 @@ span {
 .info2 {
     display: flex;
     flex-direction: row;
-    width: 250px;
+    width: 300px;
 }
 
 .searchResultHeader {
