@@ -84,11 +84,11 @@ function addToList() {
                 return;
             };
 
-            if(obj.name.trim().indexOf(' ') == -1){
+            /*if(obj.name.trim().indexOf(' ') == -1){
                  alert('Fill in both first and lastname!')
                  loadList(persons)
                  return
-            }
+            }*/
             
             //regex date (yyyy-dd-mm) validation
             const regEx = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
@@ -147,15 +147,6 @@ function clearFields(fields) {
 };
 
 
-//Clear searchResults
-function clearSearchResults() {
-    const searchItem = [...document.querySelectorAll('.item2')];
-    for( let el of searchItem) {
-        el.remove();
-    }
-    
-}
-
 document.querySelector('.clearStorageBtn').addEventListener('click', clearAllData)
 function clearAllData() {
 
@@ -165,11 +156,8 @@ function clearAllData() {
         if(e.target.classList.contains('yes')){
             document.querySelector('.overlay').style.display = 'none';
             clearUI();
-            clearSearchResults();
             persons = [];
-            entriesFound = [];
-            localStorage.removeItem('persons');
-            localStorage.removeItem('entriesFound');
+            localStorage.setItem('persons', JSON.stringify(persons));
         } 
          
          if(e.target.classList.contains('no')){
@@ -220,5 +208,8 @@ function deleteItem() {
          localStorage.setItem('persons', JSON.stringify(persons));
 };
 
-
-       
+/*
+var index = persons.map(x => {
+      return x.Id;
+        }).indexOf(ID);
+*/
