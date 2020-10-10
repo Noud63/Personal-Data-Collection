@@ -107,27 +107,27 @@ span {
     padding-bottom: 5px;
 }
 
-.info {
+.info, .info2 {
     display: flex;
     flex-direction: row;
 }
 
-.name {
+.name, .name2 {
     margin-left: 70px;
 }
 
-.born {
+.born, .born2 {
     margin-left: 25px;
 }
 
-.age {
+.age, .age2 {
     margin-left: 81px;
 }
 
-.city {
+.city, .city2{
     margin-left: 21px;
 }
-.added {
+.added, .added2 {
     margin-left: 57px; 
 }
 
@@ -146,7 +146,7 @@ span {
     cursor: pointer;
 }
 
-.id {
+.id, .id2 {
     margin-left: 91px;
 }
 
