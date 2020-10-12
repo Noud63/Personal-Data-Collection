@@ -42,14 +42,16 @@ function addToList() {
             const name = fields[0].value;
             const DOB = fields[1].value;
             let city = fields[2].value;
+            city = city.charAt(0).toUpperCase() + city.slice(1)
             const firstLetter = city.slice(0, 1).toUpperCase();
             let type = DOB.split("-")[0].slice(2);
             let id = name.split(' ');
             let num = Math.floor(Math.random() * 99) + 1;
-            if(num < 10) {
-                num = '0'+ num 
-            }
-            id = id[0] + '-' + type + '-' + firstLetter + num;
+            let num2 = Math.floor(Math.random() * 99) + 1;
+            if(num < 10) num = '0'+ num;
+            if(num2 < 10) num2 = '0'+ num2;
+            
+            id = id[0] + num2 + '-' + type + '-' + firstLetter + num;
 
             let age = function(DOB) {
                 var birthday = +new Date(DOB);                       // + converts date object to integer
@@ -208,3 +210,8 @@ function deleteItem() {
          localStorage.setItem('persons', JSON.stringify(persons));
 };
 
+/*
+var index = persons.map(x => {
+      return x.Id;
+        }).indexOf(ID);
+*/
