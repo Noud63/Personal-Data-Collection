@@ -85,12 +85,13 @@ function addToList() {
                 loadList(persons)                
                 return;
             };
-
-            /*if(obj.name.trim().indexOf(' ') == -1){
+            
+            //Fill in firstname AND surname
+            if(obj.name.trim().indexOf(' ') == -1){
                  alert('Fill in both first and lastname!')
                  loadList(persons)
                  return
-            }*/
+            }
             
             //regex date (yyyy-dd-mm) validation
             const regEx = /^(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])$/;
