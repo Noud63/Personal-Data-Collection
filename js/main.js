@@ -50,8 +50,10 @@ function addToList() {
             if(num < 10) num = '0'+ num;
             if(num2 < 10) num2 = '0'+ num2;
             
+            //Uniqui id for each entry
             id = id[0] + num2 + '-' + type + '-' + firstLetter + num;
-
+            
+            //Calculates age by date
             let age = function(DOB) {
                 var birthday = +new Date(DOB);                       // + converts date object to integer
                 return ~~((Date.now() - birthday) / (31557600000));  // 31557600000 ms = 24 * 3600 * 365.25 * 1000
