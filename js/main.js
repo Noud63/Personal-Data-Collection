@@ -50,7 +50,7 @@ function addToList() {
             if(num < 10) num = '0'+ num;
             if(num2 < 10) num2 = '0'+ num2;
             
-            //Uniqui id for each entry
+            //Unique id for each entry
             id = id[0] + num2 + '-' + type + '-' + firstLetter + num;
             
             //Calculates age by date
