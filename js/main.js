@@ -1,4 +1,3 @@
-// Input fields for collecting data, with localStorage
 import { getTimeStamp } from './timestamp.js';
 import {searchBtn, entriesFound} from './search.js';
 
