@@ -120,7 +120,7 @@ function addToList() {
             persons.push(obj);
             btn.disabled = true
 
-            //Check button attached at new entry, add entry and update UI
+            //Check button attached to new entry, add entry and update UI
             const btn2 = document.querySelector('.btn2');
             btn2.addEventListener('click', () => {
                 document.querySelector('.item').classList.remove('checkandadd')
