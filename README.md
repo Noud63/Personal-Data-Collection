@@ -1,4 +1,4 @@
-# Personal-Data-Collection (ES6 modules)
+# Personal-Data-Base (ES6 modules)
 Personal data-base with search function<br>
 Enter firstname and surname, date of birth and city of birth.<br>
 Age, unique ID and datestamp automatically generated.<br>
